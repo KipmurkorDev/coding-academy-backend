@@ -1,6 +1,5 @@
 
 post http://localhost:8080/api/users/register
-
 Content-Type:application/json
 
 {
