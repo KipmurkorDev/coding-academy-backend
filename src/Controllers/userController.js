@@ -3,12 +3,13 @@ const bcrypt = require("bcrypt")
 require('dotenv').config();
 const registeUser = async (req, res) => {
   try {
-    const { firstName, middleName, email, password } = req.body;
+    const { firstName, middleName, lastName, email, password } = req.body;
     let user = await User.findOne({ email: email});
     if (user) return res.status(400).send("User already registered.");
-    console.log(email);
-    user = new User({ firstName:firstName, middleName:middleName, email:email, password:hasshpassword });
-    user.password = await bcrypt.hash(user.password, salt);
+    let hashpassword = await bcrypt.hash(password, 8);
+    console.log(hashpassword);
+    user = new User({ firstName:firstName, middleName:middleName, lastName:lastName, email:email, password:hashpassword });
+    console.log(user);
     await user.save();
     res.status(200).send(" User was successfull registered");
   } catch (error) {

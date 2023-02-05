@@ -7,7 +7,7 @@ Content-Type:application/json
  "middleName":"Kipmurkor", 
  "lastName":"emmanuel",
  "email":"emmanuelkipmurkor@gmail.com",
- "passwod": "kim8717166"
+ "password": "kim8717166"
 }
 
 
