@@ -1,28 +1,21 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import mongoose from 'mongoose'
-import UserModel from './schemas/users.js'
-
+require('dotenv').config();
+const express=require('express')
+const mongoose=require('mongoose')
+const cors = require("cors");
 const app = express()
-dotenv.config()
+app.use(express.json())
+app.use(cors());
+// applying middleware to connect to user router
+const userRouter=require('./Routers/userRouters')
 
-// database connnection via local or mongodb atlas url
-// mongoose.connect(process.env.DATABASE_URL)
-//   .then(() => console.log('Connected!'));
+// database connnection via local or mongodb atlas url or local 
+mongoose.set('strictQuery', true);
+mongoose.connect(process.env.DATABASE_URL)
+  .then(() => console.log('Connected!'));
 
-const conn = mongoose.createConnection(process.env.DATABASE_URL);
+app.use('/api/users/', userRouter)
 
-// creating a new model
-// const m = new UserModel;
-// m.save();
-
-// accessing a created model
-// const MyModel = mongoose.model('User');
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
+// creating server
 app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${process.env.PORT}`)
+  console.log(` App is listening on port ${process.env.PORT}`)
 })

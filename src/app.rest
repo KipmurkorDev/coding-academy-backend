@@ -1,0 +1,14 @@
+
+post http://localhost:8080/api/users/register
+
+Content-Type:application/json
+
+{
+"firstName":"Emmanuel kipmurkor",
+ "middleName":"Kipmurkor", 
+ "lastName":"emmanuel",
+ "email":"emmanuelkipmurkor@gmail.com",
+ "passwod": "kim8717166"
+}
+
+
